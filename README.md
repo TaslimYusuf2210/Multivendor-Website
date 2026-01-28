@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Padisquare Multi-Vendor Storefront
+A high-performance, SEO-optimized storefront built with Next.js 14 and Tailwind CSS v4.
 
-## Getting Started
+## 🚀 Deployment
+The project is configured for seamless deployment on Vercel.
 
-First, run the development server:
+## 🛠️ Architectural Decisions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. Framework: Next.js 14 (App Router)
+I chose the App Router to take advantage of React Server Components (RSC). This allows for faster initial page loads by fetching vendor data on the server and reducing the JavaScript bundle sent to the client.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Styling: Tailwind CSS v4.1
+Used for rapid UI development and a "Zero-Runtime" CSS footprint.
+- **Theming**: Implemented the brand-specific color `#159047` using the new `@theme` block in CSS, ensuring consistency across both Light and Dark modes.
+- **Responsiveness**: Utilized a mobile-first approach with grid layouts that adapt from 1 to 4 columns based on device width.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. Data Strategy: Local JSON + ISR
+To simulate a real backend, I used a structured JSON mock API. I implemented **Incremental Static Regeneration (ISR)** with a 60-second revalidation period, ensuring the site stays fast while allowing data updates without a full rebuild.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Logic Implementation
+- **Sorting**: Handled via client-side state to allow instant filtering by Price (High/Low) and Newest Arrivals without page refreshes.
+- **Pagination**: Limited to 8 products per page to optimize viewport performance and meet the technical requirements.
+- **Search**: Implemented a search-triggered UI on the homepage to keep the landing page clean and focused on vendor discovery.
 
-## Learn More
+### 5. SEO & Metadata
+Utilized the dynamic `generateMetadata` API to ensure every vendor page has a unique title and description, improving search engine crawlability for individual stores.
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
+- `/src/app`: Routes and Server Components.
+- `/src/components`: Reusable UI (Atomic Design).
+- `/src/data`: Mock JSON data and constants.
+- `/src/assets`: Optimized assets and logos.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙️ Setup Instructions
+1. **Clone the repo**: `git clone [your-repo-url]`
+2. **Install dependencies**: `npm install`
+3. **Run dev server**: `npm run dev`
